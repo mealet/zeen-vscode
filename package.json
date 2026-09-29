@@ -5,6 +5,9 @@
     "version": "0.1.0",
     "publisher": "mealet",
     "license": "MIT",
+    "icon": "images/icon.png",
+    "homepage": "https://zeen-lang.tech",
+    "keywords": ["zeen", "programming-language", "lsp"],
     "repository": {
         "type": "git",
         "url": "https://github.com/mealet/zeen-vscode"
