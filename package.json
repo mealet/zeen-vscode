@@ -1,0 +1,55 @@
+{
+    "name": "zeen",
+    "displayName": "Zeen",
+    "description": "Language support for Zeen",
+    "version": "0.1.0",
+    "publisher": "mealet",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/mealet/zeen-vscode"
+    },
+    "engines": {
+        "vscode": "^1.85.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "activationEvents": [
+        "onLanguage:zeen"
+    ],
+    "main": "./out/extension.js",
+    "contributes": {
+        "languages": [
+            {
+                "id": "zeen",
+                "aliases": ["Zeen", "zeen"],
+                "extensions": [".zn"],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "configuration": {
+            "title": "Zeen",
+            "properties": {
+                "zeen.server.path": {
+                    "type": "string",
+                    "default": "zeen-lsp",
+                    "description": "Path to the zeen-lsp language server binary. Defaults to looking it up on PATH."
+                }
+            }
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -b",
+        "watch": "tsc -b -w"
+    },
+    "dependencies": {
+        "vscode-languageclient": "^9.0.1"
+    },
+    "devDependencies": {
+        "@types/node": "^20.0.0",
+        "@types/vscode": "^1.85.0",
+        "typescript": "^5.0.0"
+    }
+}
