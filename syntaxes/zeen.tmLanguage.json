@@ -1,0 +1,488 @@
+{
+  "name": "Zeen",
+  "scopeName": "source.zeen",
+  "fileTypes": [
+    "zeen",
+    "zn"
+  ],
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#strings"
+    },
+    {
+      "include": "#characters"
+    },
+    {
+      "include": "#numbers"
+    },
+    {
+      "include": "#preprocessor"
+    },
+    {
+      "include": "#macros"
+    },
+    {
+      "include": "#declarations"
+    },
+    {
+      "include": "#use-paths"
+    },
+    {
+      "include": "#function-types"
+    },
+    {
+      "include": "#keywords"
+    },
+    {
+      "include": "#types"
+    },
+    {
+      "include": "#turbofish"
+    },
+    {
+      "include": "#constants"
+    },
+    {
+      "include": "#generic-types"
+    },
+    {
+      "include": "#self"
+    },
+    {
+      "include": "#members"
+    },
+    {
+      "include": "#function-calls"
+    },
+    {
+      "include": "#operators"
+    },
+    {
+      "include": "#punctuation"
+    }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.double-slash.zeen",
+          "match": "//.*$"
+        },
+        {
+          "name": "comment.block.zeen",
+          "begin": "/\\*",
+          "end": "\\*/"
+        }
+      ]
+    },
+
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.zeen",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            {
+              "name": "constant.character.escape.zeen",
+              "match": "\\\\."
+            }
+          ]
+        },
+        {
+          "name": "string.quoted.raw.zeen",
+          "begin": "r#\"",
+          "end": "\"#"
+        }
+      ]
+    },
+
+    "characters": {
+      "patterns": [
+        {
+          "name": "constant.character.byte.zeen",
+          "match": "b'(?:\\\\.|[^'\\\\])'"
+        },
+        {
+          "name": "constant.character.zeen",
+          "match": "'(?:\\\\.|[^'\\\\])'"
+        }
+      ]
+    },
+
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.hex.zeen",
+          "match": "\\b0[xX][0-9A-Fa-f_]+\\b"
+        },
+        {
+          "name": "constant.numeric.binary.zeen",
+          "match": "\\b0[bB][01_]+\\b"
+        },
+        {
+          "name": "constant.numeric.octal.zeen",
+          "match": "\\b0[oO][0-7_]+\\b"
+        },
+        {
+          "name": "constant.numeric.float.zeen",
+          "match": "\\b[0-9][0-9_]*\\.(?![A-Za-z_.])(?:[0-9][0-9_]*)?"
+        },
+        {
+          "name": "constant.numeric.integer.zeen",
+          "match": "\\b[0-9][0-9_]*\\b"
+        }
+      ]
+    },
+
+    "preprocessor": {
+      "patterns": [
+        {
+          "match": "@(os|arch|env|target|family)\\[([^\\]]*)\\]",
+          "captures": {
+            "1": {
+              "name": "keyword.control.preprocessor.zeen"
+            },
+            "2": {
+              "name": "string.unquoted.preprocessor.zeen"
+            }
+          }
+        },
+        {
+          "match": "@(var)\\[([^\\]]*)\\]",
+          "captures": {
+            "1": {
+              "name": "keyword.control.preprocessor.zeen"
+            },
+            "2": {
+              "name": "string.unquoted.preprocessor.zeen"
+            }
+          }
+        },
+        {
+          "name": "keyword.control.preprocessor.zeen",
+          "match": "@(?:debug|release)\\b(?!\\[)"
+        }
+      ]
+    },
+
+    "macros": {
+      "patterns": [
+        {
+          "name": "support.function.macro.zeen",
+          "match": "@[A-Za-z_][A-Za-z0-9_]*"
+        }
+      ]
+    },
+
+    "declarations": {
+      "patterns": [
+        {
+          "match": "\\b(fn)\\s+([A-Za-z_][A-Za-z0-9_]*)",
+          "captures": {
+            "1": {
+              "name": "keyword.declaration.function.zeen"
+            },
+            "2": {
+              "name": "entity.name.function.zeen"
+            }
+          }
+        },
+        {
+          "match": "\\b(struct)\\s+([A-Za-z_][A-Za-z0-9_]*)",
+          "captures": {
+            "1": {
+              "name": "keyword.declaration.struct.zeen"
+            },
+            "2": {
+              "name": "entity.name.type.struct.zeen"
+            }
+          }
+        },
+        {
+          "match": "\\b(interface)(?:\\s*\\[[^\\]]*\\])?\\s+([A-Za-z_][A-Za-z0-9_]*)",
+          "captures": {
+            "1": {
+              "name": "keyword.declaration.interface.zeen"
+            },
+            "2": {
+              "name": "entity.name.type.interface.zeen"
+            }
+          }
+        },
+        {
+          "match": "\\b(enum)\\s+([A-Za-z_][A-Za-z0-9_]*)",
+          "captures": {
+            "1": {
+              "name": "keyword.declaration.enum.zeen"
+            },
+            "2": {
+              "name": "entity.name.type.enum.zeen"
+            }
+          }
+        },
+        {
+          "match": "\\b(alias)\\s+([A-Za-z_][A-Za-z0-9_]*)",
+          "captures": {
+            "1": {
+              "name": "keyword.declaration.alias.zeen"
+            },
+            "2": {
+              "name": "entity.name.type.alias.zeen"
+            }
+          }
+        }
+      ]
+    },
+
+    "use-paths": {
+      "patterns": [
+        {
+          "match": "\\b(use)\\s+([A-Za-z_][A-Za-z0-9_]*(?:\\.[A-Za-z_][A-Za-z0-9_]*)*)",
+          "captures": {
+            "1": {
+              "name": "keyword.module.zeen"
+            },
+            "2": {
+              "name": "entity.name.namespace.zeen"
+            }
+          }
+        }
+      ]
+    },
+
+    "function-types": {
+      "patterns": [
+        {
+          "match": "\\bFnOnce\\s*(?=\\()",
+          "name": "storage.type.function.fnonce.zeen"
+        },
+        {
+          "match": "\\bFn\\s*(?=\\()",
+          "name": "storage.type.function.fat.zeen"
+        },
+        {
+          "match": "\\bfn\\s*(?=\\()",
+          "name": "storage.type.function.zeen"
+        }
+      ]
+    },
+
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.zeen",
+          "match": "\\b(?:if|else|while|for|break|continue|return|switch)\\b"
+        },
+        {
+          "name": "keyword.declaration.zeen",
+          "match": "\\b(?:fn|struct|enum|interface|implement|alias|let|type)\\b"
+        },
+        {
+          "name": "keyword.module.zeen",
+          "match": "\\buse\\b"
+        },
+        {
+          "name": "keyword.other.zeen",
+          "match": "\\b(?:link|include)\\b"
+        },
+        {
+          "name": "storage.modifier.zeen",
+          "match": "\\b(?:pub|extern|const)\\b"
+        },
+        {
+          "name": "keyword.operator.type.zeen",
+          "match": "\\btypeof\\b"
+        }
+      ]
+    },
+
+    "types": {
+      "patterns": [
+        {
+          "name": "storage.type.primitive.zeen",
+          "match": "\\b(?:i8|i16|i32|i64|isize|u8|u16|u32|u64|usize|f32|f64|char|bool|void|never)\\b"
+        },
+        {
+          "name": "entity.name.type.zeen",
+          "match": "\\bSelf\\b"
+        },
+        {
+          "name": "storage.type.many-pointer.zeen",
+          "match": "\\[\\*\\]"
+        },
+        {
+          "name": "storage.type.slice.zeen",
+          "match": "\\[\\]"
+        },
+        {
+          "name": "storage.type.array.zeen",
+          "match": "\\[[0-9][0-9_]*\\]"
+        },
+        {
+          "name": "storage.type.pointer.zeen",
+          "match": "\\*(?=\\s*(?:const\\s+)?(?:[A-Z]|\\[|self\\b|void\\b|never\\b|char\\b|bool\\b|fn\\b|Fn\\b|isize\\b|usize\\b|(?:i|u)(?:8|16|32|64)\\b|f(?:32|64)\\b))"
+        }
+      ]
+    },
+
+    "turbofish": {
+      "patterns": [
+        {
+          "name": "keyword.operator.generic.zeen",
+          "match": "#\\["
+        }
+      ]
+    },
+
+    "constants": {
+      "patterns": [
+        {
+          "name": "constant.language.boolean.zeen",
+          "match": "\\b(?:true|false)\\b"
+        },
+        {
+          "name": "constant.language.null.zeen",
+          "match": "\\bnullptr\\b"
+        },
+        {
+          "name": "variable.language.wildcard.zeen",
+          "match": "\\b_\\b"
+        },
+        {
+          "name": "constant.other.zeen",
+          "match": "\\b[A-Z][A-Z0-9_]+\\b"
+        }
+      ]
+    },
+
+    "generic-types": {
+      "patterns": [
+        {
+          "name": "entity.name.type.zeen",
+          "match": "\\b[A-Z][A-Za-z0-9_]*\\b"
+        }
+      ]
+    },
+
+    "self": {
+      "patterns": [
+        {
+          "name": "variable.language.self.zeen",
+          "match": "\\bself\\b"
+        }
+      ]
+    },
+
+    "members": {
+      "patterns": [
+        {
+          "match": "\\.([A-Za-z_][A-Za-z0-9_]*)(?=\\s*=>)",
+          "captures": {
+            "1": {
+              "name": "entity.name.variant.zeen"
+            }
+          }
+        },
+        {
+          "match": "\\.([A-Za-z_][A-Za-z0-9_]*)(?=\\s*\\([^()]*\\)\\s*(?:if\\s*\\([^()]*\\))?\\s*=>)",
+          "captures": {
+            "1": {
+              "name": "entity.name.variant.zeen"
+            }
+          }
+        },
+        {
+          "match": "\\.([A-Za-z_][A-Za-z0-9_]*)(?=\\s*\\{)",
+          "captures": {
+            "1": {
+              "name": "entity.name.variant.zeen"
+            }
+          }
+        },
+        {
+          "match": "\\.([A-Za-z_][A-Za-z0-9_]*)(?=\\s*\\()",
+          "captures": {
+            "1": {
+              "name": "entity.name.function.zeen"
+            }
+          }
+        },
+        {
+          "match": "\\.([A-Za-z_][A-Za-z0-9_]*)(?=\\s*=)",
+          "captures": {
+            "1": {
+              "name": "variable.other.property.zeen"
+            }
+          }
+        },
+        {
+          "match": "\\.([A-Za-z_][A-Za-z0-9_]*)",
+          "captures": {
+            "1": {
+              "name": "variable.other.property.zeen"
+            }
+          }
+        }
+      ]
+    },
+
+    "function-calls": {
+      "patterns": [
+        {
+          "name": "entity.name.function.zeen",
+          "match": "\\b[A-Za-z_][A-Za-z0-9_]*(?=\\s*\\()"
+        }
+      ]
+    },
+
+    "operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator.range.zeen",
+          "match": "\\.\\.(?:=|\\.)?"
+        },
+        {
+          "name": "keyword.operator.zeen",
+          "match": "=>|==|!=|<=|>=|<<|>>|&&|\\|\\|"
+        },
+        {
+          "name": "keyword.operator.zeen",
+          "match": "[+\\-*/%^=<>!~?&|]"
+        }
+      ]
+    },
+
+    "punctuation": {
+      "patterns": [
+        {
+          "name": "punctuation.definition.block.zeen",
+          "match": "[{}]"
+        },
+        {
+          "name": "punctuation.definition.parameters.zeen",
+          "match": "[()]"
+        },
+        {
+          "name": "punctuation.definition.array.zeen",
+          "match": "[\\[\\]]"
+        },
+        {
+          "name": "punctuation.separator.zeen",
+          "match": "[,;:]"
+        },
+        {
+          "name": "punctuation.accessor.zeen",
+          "match": "\\."
+        },
+        {
+          "name": "punctuation.definition.generic.zeen",
+          "match": "#"
+        }
+      ]
+    }
+  }
+}

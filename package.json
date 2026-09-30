@@ -31,6 +31,13 @@
                 "configuration": "./language-configuration.json"
             }
         ],
+        "grammars": [
+            {
+                "language": "zeen",
+                "scopeName": "source.zeen",
+                "path": "./syntaxes/zeen.tmLanguage.json"
+            }
+        ],
         "configuration": {
             "title": "Zeen",
             "properties": {
