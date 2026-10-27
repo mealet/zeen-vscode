@@ -2,7 +2,7 @@
     "name": "zeen",
     "displayName": "Zeen",
     "description": "Language support for Zeen",
-    "version": "0.1.0",
+    "version": "0.4.0",
     "publisher": "mealet",
     "license": "MIT",
     "icon": "images/icon.png",
